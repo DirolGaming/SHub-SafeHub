@@ -1,0 +1,31 @@
+name: SafeHub
+version: ${project.version}
+author: DirolGaming
+depend: [ProvidersLib]
+main: me.DirolGaming.SHub.main
+commands:
+   sethub:
+      description: Use /shub to see available commands.
+      usage: /sethub
+   hub:
+      description: Use /hub to teleport to hub.
+      usage: /hub
+   shub:
+      description: Use /shub to see available commands.
+      usage: /shub or /shub reload.
+permissions:
+  safehub.reload:
+    default: false
+    description: Allows access to the Reload command.
+  safehub.receive:
+    default: true
+    description: Players will receive items on join.
+  safehub.sethub:
+    default: false
+    description: Player will be able to set the hub to their location.
+  safehub.hub:
+    default: true
+    description: Players will get access to /hub command.
+  safehub.admin:
+    default: false
+    description: Only recommended for OP's and Admins.
