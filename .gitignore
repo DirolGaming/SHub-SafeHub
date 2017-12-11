@@ -1,2 +1,10 @@
 
 \.idea/
+
+*.iml
+
+target/classes/me/dirolgaming/shub/
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/
+
+target/
