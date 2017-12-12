@@ -25,5 +25,7 @@ public class OnQuitListener implements Listener {
             event.setQuitMessage(plugin.getConfig().getString("Quit-Message")
                     .replaceAll("&", "§").replace("%player%", player.getName()));
         }
+        plugin.chat.remove(player.getName());
+        plugin.clock.remove(player.getName());
     }
 }
