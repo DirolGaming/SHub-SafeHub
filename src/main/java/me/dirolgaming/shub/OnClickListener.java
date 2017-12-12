@@ -61,7 +61,7 @@ public class OnClickListener implements Listener {
                     plugin.clock.remove(player.getName());
                     plugin.getServer().getOnlinePlayers().forEach(p -> {
                         if (p != e.getPlayer()) {
-                            e.getPlayer().showPlayer(p);
+                            e.getPlayer().showPlayer(plugin, p);
                         }
                     });
                     player.sendMessage(plugin.getConfig().getString("Show-Players-Message").replaceAll("&", "§"));
@@ -69,7 +69,7 @@ public class OnClickListener implements Listener {
                     plugin.clock.add(player.getName());
                     plugin.getServer().getOnlinePlayers().forEach(p -> {
                         if (p != e.getPlayer()) {
-                            e.getPlayer().hidePlayer(p);
+                            e.getPlayer().hidePlayer(plugin, p);
                         }
                     });
                     player.sendMessage(plugin.getConfig().getString("Hide-Players-Message").replaceAll("&", "§"));
