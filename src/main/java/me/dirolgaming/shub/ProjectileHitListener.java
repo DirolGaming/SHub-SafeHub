@@ -11,8 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class ProjectileHitListener
-        implements Listener
-{
+        implements Listener {
     private main plugin;
 
     public ProjectileHitListener(main plugin)
@@ -21,22 +20,43 @@ public class ProjectileHitListener
     }
 
     @EventHandler
-    public void onHit(ProjectileHitEvent e)
-    {
-        if ((e.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
-                ((e.getEntity() instanceof Snowball)))
-        {
+    public void onHit(ProjectileHitEvent e) {
+        if ((e.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) &&
+                ((e.getEntity() instanceof Snowball))) {
             Location snowball = e.getEntity().getLocation();
             World world = e.getEntity().getWorld();
+            if (plugin.getConfig().getBoolean("enable-sound")) {
+                String soundscnd = plugin.getConfig().getString("sound-second");
+                String soundthrd = plugin.getConfig().getString("sound-third");
+                String soundfrth = plugin.getConfig().getString("sound-forth");
+                String soundfirst = plugin.getConfig().getString("sound-first");
+                // a really retarded way to do this
+                // need to change this asap
+                if (plugin.getConfig().getString("sound-first").contentEquals("-")) {
+                    world.playSound(snowball, soundscnd, 10.0F, 1.0F);
+                    world.playSound(snowball, soundthrd, 10.0F, 1.0F);
+                    world.playSound(snowball, soundfrth, 10.0F, 1.0F);
+                }
+                if (plugin.getConfig().getString("sound-second").contentEquals("-")){
+                    world.playSound(snowball, soundfirst, 10.0F, 1.0F);
+                    world.playSound(snowball, soundthrd, 10.0F, 1.0F);
+                    world.playSound(snowball, soundfrth, 10.0F, 1.0F);
+                }
+                if (plugin.getConfig().getString("sound-third").contentEquals("-")){
+                    world.playSound(snowball, soundfirst, 10.0F, 1.0F);
+                    world.playSound(snowball, soundscnd, 10.0F, 1.0F);
+                    world.playSound(snowball, soundfrth, 10.0F, 1.0F);
+                }
+
+
+            }
+            String effectfrst = plugin.getConfig().getString("effect");
             world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
             world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
             world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
             world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
             world.playEffect(snowball, Effect.ENDER_SIGNAL, 5);
-            world.playSound(snowball, Sound.ENTITY_CAT_AMBIENT, 10.0F, 1.0F);
-            world.playSound(snowball, Sound.ENTITY_WOLF_AMBIENT, 10.0F, 1.0F);
-            world.playSound(snowball, Sound.ENTITY_ENDERDRAGON_FLAP, 10.0F, 1.0F);
-            world.playSound(snowball, Sound.BLOCK_WATER_AMBIENT, 10.0F, 1.0F);
+
         }
     }
 }
