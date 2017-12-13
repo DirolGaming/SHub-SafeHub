@@ -7,8 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public class BlockPlaceListener
-        implements Listener
-{
+        implements Listener {
     private main plugin;
 
     public BlockPlaceListener(main plugin)
@@ -19,8 +18,8 @@ public class BlockPlaceListener
     @EventHandler
     public void onPlace(BlockPlaceEvent event)
     {
-        if ((event.getPlayer().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
-                (this.plugin.getConfig().getString("on-place-block-deny").equals("true")) && (
+        if ((event.getPlayer().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) &&
+                (plugin.getConfig().getString("on-place-block-deny").equals("true")) && (
                 (event.getPlayer().getGameMode() == GameMode.ADVENTURE) ||
                         (event.getPlayer().getGameMode() == GameMode.SURVIVAL))) {
             event.setCancelled(true);
