@@ -18,14 +18,18 @@ public class OnQuitListener implements Listener {
         if (player.getLocation().getWorld().equals(plugin.getConfig().getString("world"))) {
             if (plugin.getConfig().getString("clear-on-quit").equals("true")) {
                 event.getPlayer().getInventory().clear();
-                plugin.getLogger().info("Quit - Inventory cleared");
+                plugin.getLogger().info("Shub: quit - Inventory cleared");
             }
         }
         if (plugin.getConfig().getBoolean("enable-join-quit-messages")) {
             event.setQuitMessage(plugin.getConfig().getString("Quit-Message")
                     .replaceAll("&", "§").replace("%player%", player.getName()));
         }
-        plugin.chat.remove(player.getName());
-        plugin.clock.remove(player.getName());
+        if (plugin.chat.contains(player.getName())) {
+            plugin.chat.remove(player.getName());
+        }
+        if (plugin.clock.contains(player.getName())) {
+            plugin.clock.remove(player.getName());
+        }
     }
 }
