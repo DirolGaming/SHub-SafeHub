@@ -25,7 +25,7 @@ public class OnFlightListener
         Effect effect = Effect.valueOf(this.plugin.getConfig().getString("Effect").toUpperCase());
         final Player player = event.getPlayer();
         if (player.getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) {
-            if (this.plugin.getConfig().getBoolean("Enable-Doublejump"))
+            if (plugin.getConfig().getBoolean("Enable-Doublejump"))
             {
                 if (player.getGameMode() == GameMode.CREATIVE) {
                     return;
@@ -33,16 +33,16 @@ public class OnFlightListener
                 player.setAllowFlight(false);
                 event.setCancelled(true);
                 player.setFlying(false);
-                if (this.plugin.doublejumpcooldownTime.containsKey(player))
+                if (plugin.doublejumpcooldownTime.containsKey(player))
                 {
-                    int time = ((Integer)this.plugin.doublejumpcooldownTime.get(player)).intValue();
+                    int time = ((Integer)plugin.doublejumpcooldownTime.get(player)).intValue();
                     String cooldowntime = Integer.toString(time);
                     if (plugin.getConfig().getBoolean("Enable-Doublejump-Messages")) {
-                        player.sendMessage(this.plugin.getConfig().getString("Doublejump-cooldownleft").replaceAll("&", "§").replaceAll("%time%", cooldowntime));
+                        player.sendMessage(plugin.getConfig().getString("Doublejump-cooldownleft").replaceAll("&", "§").replaceAll("%time%", cooldowntime));
                     }
                     return;
                 }
-                this.plugin.doublejumpcooldownTime.put(player, Integer.valueOf(3));
+                plugin.doublejumpcooldownTime.put(player, Integer.valueOf(3));
 
                 player.setVelocity(player.getEyeLocation().getDirection().multiply(this.plugin.getConfig().getInt("velocity")).setY(1));
 
@@ -58,14 +58,14 @@ public class OnFlightListener
                                 player.sendMessage(OnFlightListener.this.plugin.getConfig().getString("Doublejump-cooldownleft").replaceAll("&", "§"));
                                 player.sendMessage(OnFlightListener.this.plugin.getConfig().getString("Doublejump-Message").replaceAll("&", "§"));
                             }
-                            OnFlightListener.this.plugin.doublejumpcooldownTime.remove(player);
-                            OnFlightListener.this.plugin.doublejumpcooldownTask.remove(player);
+                            plugin.doublejumpcooldownTime.remove(player);
+                            plugin.doublejumpcooldownTask.remove(player);
                             cancel();
                         }
                     }
                 });
-                ((BukkitRunnable)this.plugin.doublejumpcooldownTask.get(player)).runTaskTimer(this.plugin, 20L, 20L);
-                if (this.plugin.getConfig().getBoolean("Enable-Effect"))
+                ((BukkitRunnable)plugin.doublejumpcooldownTask.get(player)).runTaskTimer(plugin, 20L, 20L);
+                if (plugin.getConfig().getBoolean("Enable-Effect"))
                 {
                     player.playEffect(player.getLocation(), effect, null);
                     player.playEffect(player.getLocation(), effect, null);
