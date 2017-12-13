@@ -32,7 +32,7 @@ public class MoveListener
     }
 
     @EventHandler
-    public void onMove2(PlayerMoveEvent t)
+    public void onMoveTP(PlayerMoveEvent t)
     {
         Player p = t.getPlayer();
         if ((this.plugin.getConfig().getBoolean("enable-movementYtp")) && (p.getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
