@@ -19,8 +19,23 @@ Enable-Effect: true
 chat-unmute: "&7Chat has been unmuted!"
 chat-mute: "&7Chat has been muted!"
 
+#This is the Hub Gun sounds and effects part
+#Conf this as you wish - beta
+enable-sound: true
+sounds:
+- "CAT_AMBIENT:10:1"
+- "WOLF_AMBIENT:10:1"
+- "ENDERDRAGON_FLAP:10:1"
+- "WATER_AMBIENT:10:1"
+enable-effect: true
+- "MOBSPAWNER_FLAMES:5"
+- "MOBSPAWNER_FLAMES:5"
+- "MOBSPAWNER_FLAMES:5"
+- "ENDER_SIGNAL:5"
+
 #Effect, effects have a BUKKIT Effect name. The plugin will capitalize the Effect names. To see available effects go here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
 #Be careful with it, because it can cause problems when you accidentaly insert a Sound Effect, not a Particle Effect
+#This is the doublejump effect
 Effect: 'MOBSPAWNER_FLAMES'
 
 #Disable this if you don't want the plugin to check for updates straight from the plugin page
@@ -150,4 +165,4 @@ cordinate-y: 15
 #If you have found a bug, please PM me, or post it in the Discussion section of the Plugin Spigot page
 
 #No need to touch this
-config ver: 1.0.3
+config ver: 1.0.4
