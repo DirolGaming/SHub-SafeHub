@@ -1,5 +1,6 @@
 package me.dirolgaming.shub;
 
+import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -9,6 +10,8 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
+
+import java.util.List;
 
 public class ProjectileHitListener
         implements Listener {
@@ -26,36 +29,24 @@ public class ProjectileHitListener
             Location snowball = e.getEntity().getLocation();
             World world = e.getEntity().getWorld();
             if (plugin.getConfig().getBoolean("enable-sound")) {
-                String soundscnd = plugin.getConfig().getString("sound-second");
-                String soundthrd = plugin.getConfig().getString("sound-third");
-                String soundfrth = plugin.getConfig().getString("sound-forth");
-                String soundfirst = plugin.getConfig().getString("sound-first");
-                // a really retarded way to do this
-                // need to change this asap
-                if (plugin.getConfig().getString("sound-first").contentEquals("-")) {
-                    world.playSound(snowball, soundscnd, 10.0F, 1.0F);
-                    world.playSound(snowball, soundthrd, 10.0F, 1.0F);
-                    world.playSound(snowball, soundfrth, 10.0F, 1.0F);
-                }
-                if (plugin.getConfig().getString("sound-second").contentEquals("-")){
-                    world.playSound(snowball, soundfirst, 10.0F, 1.0F);
-                    world.playSound(snowball, soundthrd, 10.0F, 1.0F);
-                    world.playSound(snowball, soundfrth, 10.0F, 1.0F);
-                }
-                if (plugin.getConfig().getString("sound-third").contentEquals("-")){
-                    world.playSound(snowball, soundfirst, 10.0F, 1.0F);
-                    world.playSound(snowball, soundscnd, 10.0F, 1.0F);
-                    world.playSound(snowball, soundfrth, 10.0F, 1.0F);
-                }
-
-
+                List<String> sounds = plugin.getConfig().getStringList("sounds");
+                sounds.forEach(soundString -> {
+                    String[] soundSplitted = soundString.split(":");
+                    Sound sound = Sound.valueOf(soundSplitted[0]);
+                    int speed = Integer.parseInt(soundSplitted[1]);
+                    int pitch = Integer.parseInt(soundSplitted[2]);
+                    world.playSound(snowball, sound, speed, pitch);
+                });
             }
-            String effectfrst = plugin.getConfig().getString("effect");
-            world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
-            world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
-            world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
-            world.playEffect(snowball, Effect.MOBSPAWNER_FLAMES, 5);
-            world.playEffect(snowball, Effect.ENDER_SIGNAL, 5);
+            if(plugin.getConfig().getBoolean("enable-effect")) {
+                List<String> effects = plugin.getConfig().getStringList("effects");
+                effects.forEach(effectString -> {
+                    String[] effectSplitted = effectString.split(":");
+                    Effect effect = Effect.valueOf(effectSplitted[0]);
+                    int radius = Integer.parseInt(effectSplitted[1]);
+                    world.playEffect(snowball, effect, radius);
+                });
+            }
 
         }
     }
