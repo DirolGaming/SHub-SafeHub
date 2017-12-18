@@ -64,7 +64,7 @@ public class OnClickListener implements Listener {
                             e.getPlayer().showPlayer(plugin, p);
                         }
                     });
-                    player.sendMessage(plugin.getConfig().getString("Show-Players-Message").replaceAll("&", "§"));
+                    player.sendMessage(plugin.getConfig().getString("show-players-mssage").replaceAll("&", "§"));
                 } else {
                     plugin.clock.add(player.getName());
                     plugin.getServer().getOnlinePlayers().forEach(p -> {
@@ -72,7 +72,7 @@ public class OnClickListener implements Listener {
                             e.getPlayer().hidePlayer(plugin, p);
                         }
                     });
-                    player.sendMessage(plugin.getConfig().getString("Hide-Players-Message").replaceAll("&", "§"));
+                    player.sendMessage(plugin.getConfig().getString("hide-players-message").replaceAll("&", "§"));
                 }
             }
         }

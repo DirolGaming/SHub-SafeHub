@@ -21,7 +21,7 @@ public class DamageEventListener
     public void onFall(EntityDamageEvent event)
     {
         if ((event.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) &&
-                (plugin.getConfig().getBoolean("Disable-Fall-Damage")) && ((event.getEntity() instanceof Player)) && (event.getCause() == EntityDamageEvent.DamageCause.FALL)) {
+                (plugin.getConfig().getBoolean("disable-fall-damage")) && ((event.getEntity() instanceof Player)) && (event.getCause() == EntityDamageEvent.DamageCause.FALL)) {
             event.setCancelled(true);
         }
     }

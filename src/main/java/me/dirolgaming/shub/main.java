@@ -50,6 +50,7 @@ public class main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new OnClickListener(this), this);
         getServer().getPluginManager().registerEvents(new MoveListener(this), this);
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
+        getServer().getPluginManager().registerEvents(new WeatherChangeListener(this), this);
         saveDefaultConfig();
 
         RegisteredServiceProvider<Providers> rsp = getServer().getServicesManager().getRegistration(Providers.class);

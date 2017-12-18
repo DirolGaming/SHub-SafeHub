@@ -1,6 +1,5 @@
 package me.dirolgaming.shub;
 
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;

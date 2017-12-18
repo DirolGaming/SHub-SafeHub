@@ -19,7 +19,7 @@ public class WeatherChangeListener
     public void onWeatherChange(WeatherChangeEvent event)
     {
         if ((event.getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
-                (this.plugin.getConfig().getBoolean("Disable-Weather")) && (event.toWeatherState())) {
+                (this.plugin.getConfig().getBoolean("disable-weather")) && (event.toWeatherState())) {
             event.setCancelled(true);
         }
     }

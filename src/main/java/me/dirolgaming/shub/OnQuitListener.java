@@ -22,7 +22,7 @@ public class OnQuitListener implements Listener {
             }
         }
         if (plugin.getConfig().getBoolean("enable-join-quit-messages")) {
-            event.setQuitMessage(plugin.getConfig().getString("Quit-Message")
+            event.setQuitMessage(plugin.getConfig().getString("quit-message")
                     .replaceAll("&", "§").replace("%player%", player.getName()));
         }
         if (plugin.chat.contains(player.getName())) {

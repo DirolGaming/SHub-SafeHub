@@ -45,14 +45,14 @@ public class OnJoinListener implements Listener {
                 }
             }
         });
-        if(plugin.getConfig().getBoolean("Disable-Hunger")) {
+        if(plugin.getConfig().getBoolean("disable-hunger")) {
             if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
                 player.setFoodLevel(20);
             }
         }
 
         if(plugin.getConfig().getBoolean("enable-join-quit-messages")) {
-            event.setJoinMessage(plugin.getConfig().getString("Join-Message")
+            event.setJoinMessage(plugin.getConfig().getString("join-message")
                     .replaceAll("&", "§")
                     .replace("%player%", player.getName())
             );
@@ -154,7 +154,7 @@ public class OnJoinListener implements Listener {
             }
         }
         if (player.hasPermission("safehub.admin")) {
-            if (plugin.getConfig().getBoolean("Check-Update") && plugin.getConfig().getBoolean("notify-update")) {
+            if (plugin.getConfig().getBoolean("check-update") && plugin.getConfig().getBoolean("notify-update")) {
                 plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> plugin.checkUpdate());
             }
         }

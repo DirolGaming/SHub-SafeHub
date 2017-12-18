@@ -21,7 +21,7 @@ public class OnCommand implements CommandExecutor {
                 if (player.hasPermission("safehub.sethub")) {
                     if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
                         plugin.spawnpoint.setSpawnpoint(Bukkit.getWorld(plugin.getConfig().getString("world")), player.getLocation());
-                        player.sendMessage(plugin.getConfig().getString("Set-hub").replaceAll("&", "§"));
+                        player.sendMessage(plugin.getConfig().getString("set-hub").replaceAll("&", "§"));
                         return true;
                     }
                     else if (!player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
@@ -42,12 +42,12 @@ public class OnCommand implements CommandExecutor {
                 Player player = (Player) sender;
                 if (sender.hasPermission("safehub.hub")) {
                     player.teleport(plugin.spawnpoint.getSpawnpoint(Bukkit.getWorld(plugin.getConfig().getString("world"))));
-                    player.sendMessage(plugin.getConfig().getString("On-teleport-to-spawn").replaceAll("&", "§"));
+                    player.sendMessage(plugin.getConfig().getString("on-teleport-to-spawn").replaceAll("&", "§"));
                     return true;
                 }
                 else {
                     if (!sender.hasPermission("safehub.hub")){
-                        sender.sendMessage(plugin.getConfig().getString("No-Permission").replaceAll("&", "§"));
+                        sender.sendMessage(plugin.getConfig().getString("no-permission").replaceAll("&", "§"));
                         return true;
                     }
                 }
@@ -64,12 +64,12 @@ public class OnCommand implements CommandExecutor {
                 return true;
             } else if(args[0].equalsIgnoreCase("reload")) {
                 if(sender.hasPermission("safehub.reload")) {
-                    sender.sendMessage(plugin.getConfig().getString("Reload-Message").replaceAll("&", "§"));
+                    sender.sendMessage(plugin.getConfig().getString("reload-message").replaceAll("&", "§"));
                     plugin.reloadConfig();
                     return true;
                 }
                 if (!sender.hasPermission("safehub.reload")) {
-                    sender.sendMessage(plugin.getConfig().getString("No-Permission").replaceAll("&", "§"));
+                    sender.sendMessage(plugin.getConfig().getString("no-permission").replaceAll("&", "§"));
                     return true;
                 }
             } else if (sender.hasPermission("safehub.admin")) {
@@ -89,11 +89,11 @@ public class OnCommand implements CommandExecutor {
                         return true;
                     }
                     else {
-                        sender.sendMessage(plugin.getConfig().getString("No-Permission").replaceAll("&", "§"));
+                        sender.sendMessage(plugin.getConfig().getString("no-permission").replaceAll("&", "§"));
                     }
                 }
             } else {
-                sender.sendMessage(plugin.getConfig().getString("Unknown-Command").replaceAll("&", "§"));
+                sender.sendMessage(plugin.getConfig().getString("unknown-command").replaceAll("&", "§"));
                 return true;
             }
         }
