@@ -8,12 +8,12 @@ teleport-on-join: true
 
 #SHub doublejump settings
 velocity: 1.5
-Enable-Doublejump: true
-Enable-Doublejump-Messages: true
-Doublejump-Message: '&7Woosh!'
-Doublejump-cooldownleft: '&7You must wait &c&l%time% &7seconds to doublejump again'
-Doublejump-cooldownmessage: '&7You can now use the doublejump function again!'
-Enable-Effect: true
+enable-doublejump: true
+dnable-doublejump-Messages: true
+doublejump-message: '&7Woosh!'
+doublejump-cooldownleft: '&7You must wait &c&l%time% &7seconds to doublejump again'
+doublejump-cooldownmessage: '&7You can now use the doublejump function again!'
+enable-effect: true
 
 #SHub chat toggle messages
 chat-unmute: "&7Chat has been unmuted!"
@@ -36,10 +36,10 @@ enable-effect: true
 #Effect, effects have a BUKKIT Effect name. The plugin will capitalize the Effect names. To see available effects go here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
 #Be careful with it, because it can cause problems when you accidentaly insert a Sound Effect, not a Particle Effect
 #This is the doublejump effect
-Effect: 'MOBSPAWNER_FLAMES'
+effect: 'MOBSPAWNER_FLAMES'
 
 #Disable this if you don't want the plugin to check for updates straight from the plugin page
-Check-Update: true
+check-update: true
 notify-update: true
 enable-notifications: '&c&lSafeHub &7update notifications are now &a&lenabled&7!'
 disable-notifications: '&c&lSafeHub &7update notifications are now &c&ldisabled&7!'
@@ -124,15 +124,15 @@ item-9:
 
 #Change the join and leave messages! Use the %player% if you want to display the player's name
 enable-join-quit-messages: true
-Join-Message: '&c&l%player% &7has joined the server!'
-Quit-Message: '&c&l%player% &7has left the server!'
+join-message: '&c&l%player% &7has joined the server!'
+quit-message: '&c&l%player% &7has left the server!'
 
 #Some common messages of SHub
-No-Permission: '&cYou do not have enough permissions for that command!'
-Unknown-Command: '&7Unknown command, use /hub to see available commands.'
-Reload-Message: '&8[&c&lSHub&8] &7plugin has been reloaded.'
-On-teleport-to-spawn: '&7You have been teleported to &c&lHub&7.'
-Set-hub: '&7New &c&lHub &7location has been set.'
+no-permission: '&cYou do not have enough permissions for that command!'
+unknown-command: '&7Unknown command, use /hub to see available commands.'
+reload-message: '&8[&c&lSHub&8] &7plugin has been reloaded.'
+on-teleport-to-spawn: '&7You have been teleported to &c&lHub&7.'
+set-hub: '&7New &c&lHub &7location has been set.'
 
 #Select if you want to allow item-drops and inventory-interaction. Inventory-interaction will only affect those players who are on Survival/Adventure gamemodes
 item-drop: false
@@ -148,13 +148,13 @@ on-place-block-deny: true
 
 #Boolean values (they can only be true or false)
 gamemode-on-join-adventure: true
-Disable-Fall-Damage: true
-Disable-Hunger: true
-Disable-Weather: true
+disable-fall-damage: true
+disable-hunger: true
+disable-weather: true
 
 #Magic-Clock Messages.
-Hide-Players-Message: '&8[&c&lSHub&8] &7All players have been hidden!'
-Show-Players-Message: '&8[&c&lSHub&8] &7All players are now visible!'
+hide-players-message: '&8[&c&lSHub&8] &7All players have been hidden!'
+show-players-message: '&8[&c&lSHub&8] &7All players are now visible!'
 
 #Movement - Teleport player back to spawn if he falls (leave this off, if you do not have a hub that is in the air, and players have the danger of falling into void).
 #Movement - cordinate-y only accepts integers (otherwise known as numbers). Example: Hub is at Y 89, player falls, if the cordinate-y is 60 then when the player's at Y=60, he will be teleported back to spawn.
