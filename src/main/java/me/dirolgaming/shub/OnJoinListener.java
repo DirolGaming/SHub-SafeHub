@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Arrays;
 
 import static org.bukkit.event.EventPriority.MONITOR;
+import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte0.runnable;
 
 
 public class OnJoinListener implements Listener {
@@ -31,6 +32,9 @@ public class OnJoinListener implements Listener {
         int fadeout = plugin.getConfig().getInt("jointitle.fadeout", 20);
         int stay = plugin.getConfig().getInt("jointitle.stay", 20);
         int actionbartime = plugin.getConfig().getInt("actionbar.stay", 20);
+        if (Bukkit.getWorld(plugin.getConfig().getString("world")).getTime() != plugin.getConfig().getInt("time") && plugin.getConfig().getBoolean("lock-time")) {
+            Bukkit.getWorld(plugin.getConfig().getString("world")).setTime(plugin.getConfig().getInt("time"));
+            }
 
 
 
