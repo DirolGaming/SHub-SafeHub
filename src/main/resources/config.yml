@@ -127,6 +127,10 @@ enable-join-quit-messages: true
 join-message: '&c&l%player% &7has joined the server!'
 quit-message: '&c&l%player% &7has left the server!'
 
+#Basic implementation of disabling time
+lock-time: true
+time: 5600
+
 #Some common messages of SHub
 no-permission: '&cYou do not have enough permissions for that command!'
 unknown-command: '&7Unknown command, use /hub to see available commands.'
