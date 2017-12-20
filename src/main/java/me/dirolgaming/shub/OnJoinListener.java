@@ -73,87 +73,81 @@ public class OnJoinListener implements Listener {
         if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
             if (event.getPlayer().hasPermission("safehub.receive")) {
 
-                if (plugin.getConfig().getBoolean("item-1.enable")) {
-                    ItemStack ese1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);
-                    ItemMeta im = ese1.getItemMeta();
+                    ItemStack itm1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);
+                    ItemMeta im = itm1.getItemMeta();
                     im.setDisplayName(plugin.getConfig().getString("item-1.name", "").replaceAll("&", "§"));
                     im.setLore(Arrays.asList(plugin.getConfig().getString("item-1.lore", "").replaceAll("&", "§")));
-                    ese1.setItemMeta(im);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-1.slot") - 1, ese1);
+                    itm1.setItemMeta(im);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-1.slot") - 1, itm1);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-2.enable")) {
-                    ItemStack ese2 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-2.item", "AIR").toUpperCase()), 1);
-                    ItemMeta pm = ese2.getItemMeta();
+
+                    ItemStack itm2 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-2.item", "AIR").toUpperCase()), 1);
+                    ItemMeta pm = itm2.getItemMeta();
                     pm.setDisplayName(plugin.getConfig().getString("item-2.name", "").replaceAll("&", "§"));
                     pm.setLore(Arrays.asList(plugin.getConfig().getString("item-2.lore", "").replaceAll("&", "§")));
-                    ese2.setItemMeta(pm);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-2.slot") - 1, ese2);
+                    itm2.setItemMeta(pm);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-2.slot") - 1, itm2);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-3.enable")) {
-                    ItemStack ese3 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-3.item", "AIR").toUpperCase()), 1);
-                    ItemMeta cm = ese3.getItemMeta();
+
+
+                    ItemStack itm3 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-3.item", "AIR").toUpperCase()), 1);
+                    ItemMeta cm = itm3.getItemMeta();
                     cm.setDisplayName(plugin.getConfig().getString("item-3.name", "").replaceAll("&", "§"));
                     cm.setLore(Arrays.asList(plugin.getConfig().getString("item-3.lore", "").replaceAll("&", "§")));
-                    ese3.setItemMeta(cm);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-3.slot") - 1, ese3);
+                    itm3.setItemMeta(cm);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-3.slot") - 1, itm3);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-4.enable")) {
-                    ItemStack ese4 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-4.item", "AIR").toUpperCase()), 1);
-                    ItemMeta om = ese4.getItemMeta();
+
+
+                    ItemStack itm4 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-4.item", "AIR").toUpperCase()), 1);
+                    ItemMeta om = itm4.getItemMeta();
                     om.setDisplayName(plugin.getConfig().getString("item-4.name", "").replaceAll("&", "§"));
                     om.setLore(Arrays.asList(plugin.getConfig().getString("item-4.lore", "").replaceAll("&", "§")));
-                    ese4.setItemMeta(om);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-4.slot") - 1, ese4);
+                    itm4.setItemMeta(om);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-4.slot") - 1, itm4);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-5.enable")) {
-                    ItemStack ese5 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-5.item", "AIR").toUpperCase()), 1);
-                    ItemMeta um = ese5.getItemMeta();
+
+
+                    ItemStack itm5 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-5.item", "AIR").toUpperCase()), 1);
+                    ItemMeta um = itm5.getItemMeta();
                     um.setDisplayName(plugin.getConfig().getString("item-5.name", "").replaceAll("&", "§"));
                     um.setLore(Arrays.asList(plugin.getConfig().getString("item-5.lore", "").replaceAll("&", "§")));
-                    ese5.setItemMeta(um);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-5.slot") - 1, ese5);
+                    itm5.setItemMeta(um);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-5.slot") - 1, itm5);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-6.enable")) {
-                    ItemStack ese6 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-6.item", "AIR").toUpperCase()), 1);
-                    ItemMeta um = ese6.getItemMeta();
+
+
+                    ItemStack itm6 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-6.item", "AIR").toUpperCase()), 1);
+                    ItemMeta ugm = itm6.getItemMeta();
                     um.setDisplayName(plugin.getConfig().getString("item-6.name", "").replaceAll("&", "§"));
                     um.setLore(Arrays.asList(plugin.getConfig().getString("item-6.lore", "").replaceAll("&", "§")));
-                    ese6.setItemMeta(um);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-6.slot") - 1, ese6);
+                    itm6.setItemMeta(um);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-6.slot") - 1, itm6);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-7.enable")) {
-                    ItemStack ese7 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-7.item", "AIR").toUpperCase()), 1);
-                    ItemMeta um = ese7.getItemMeta();
+
+                    ItemStack itm7 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-7.item", "AIR").toUpperCase()), 1);
+                    ItemMeta uum = itm7.getItemMeta();
                     um.setDisplayName(plugin.getConfig().getString("item-7.name", "").replaceAll("&", "§"));
                     um.setLore(Arrays.asList(plugin.getConfig().getString("item-7.lore", "").replaceAll("&", "§")));
-                    ese7.setItemMeta(um);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-7.slot") - 1, ese7);
+                    itm7.setItemMeta(um);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-7.slot") - 1, itm7);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-8.enable")) {
-                    ItemStack ese8 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-8.item", "AIR").toUpperCase()), 1);
-                    ItemMeta um = ese8.getItemMeta();
+
+                    ItemStack itm8 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-8.item", "AIR").toUpperCase()), 1);
+                    ItemMeta ufm = itm8.getItemMeta();
                     um.setDisplayName(plugin.getConfig().getString("item-8.name", "").replaceAll("&", "§"));
                     um.setLore(Arrays.asList(plugin.getConfig().getString("item-8.lore", "").replaceAll("&", "§")));
-                    ese8.setItemMeta(um);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-8.slot") - 1, ese8);
+                    itm8.setItemMeta(um);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-8.slot") - 1, itm8);
                     event.getPlayer().updateInventory();
-                }
-                if (plugin.getConfig().getBoolean("item-9.enable")) {
-                    ItemStack ese9 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-9.item", "AIR").toUpperCase()), 1);
-                    ItemMeta um = ese9.getItemMeta();
+
+                    ItemStack itm9 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-9.item", "AIR").toUpperCase()), 1);
+                    ItemMeta uhm = itm9.getItemMeta();
                     um.setDisplayName(plugin.getConfig().getString("item-9.name", "").replaceAll("&", "§"));
                     um.setLore(Arrays.asList(plugin.getConfig().getString("item-9.lore", "").replaceAll("&", "§")));
-                    ese9.setItemMeta(um);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-9.slot") - 1, ese9);
+                    itm9.setItemMeta(um);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-9.slot") - 1, itm9);
                     event.getPlayer().updateInventory();
-                }
             }
         }
         if (player.hasPermission("safehub.admin")) {
