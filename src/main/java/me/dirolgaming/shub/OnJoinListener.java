@@ -11,7 +11,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Arrays;
 
 import static org.bukkit.event.EventPriority.MONITOR;
-import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte0.runnable;
 
 
 public class OnJoinListener implements Listener {
