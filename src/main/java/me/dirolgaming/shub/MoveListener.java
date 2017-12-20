@@ -23,6 +23,9 @@ public class MoveListener
     public void onMove(PlayerMoveEvent event)
     {
         Player player = event.getPlayer();
+        if (Bukkit.getWorld(plugin.getConfig().getString("world")).getTime() != plugin.getConfig().getInt("time") && plugin.getConfig().getBoolean("lock-time")) {
+            Bukkit.getWorld(plugin.getConfig().getString("world")).setTime(plugin.getConfig().getInt("time"));
+        }
         if ((player.getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
                 (player.getGameMode() != GameMode.CREATIVE) &&
                 (player.getLocation().subtract(0.0D, 1.0D, 0.0D).getBlock().getType() != Material.AIR) &&

@@ -25,8 +25,7 @@ public class OnFlightListener
         Effect effect = Effect.valueOf(this.plugin.getConfig().getString("Effect").toUpperCase());
         final Player player = event.getPlayer();
         if (player.getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) {
-            if (plugin.getConfig().getBoolean("enable-doublejump"))
-            {
+            if (plugin.getConfig().getBoolean("enable-doublejump")) {
                 if (player.getGameMode() == GameMode.CREATIVE) {
                     return;
                 }
