@@ -64,59 +64,55 @@ actionbar:
 #If you want to make a great server selector, use ItemCommands & ChestCommandsGUI plugins to make an awesome looking server selector
 #If you do not want to use all of the customizable 5 items, you can disable them one at a time by changing "enable: true" to "enable: false"
 item-1:
-  enable: true
   item: compass
   name: '&c&lServer selector'
   lore: '&7Insert text here'
   slot: 1
 
 item-2:
-  enable: true
   item: BLAZE_ROD
   name: '&c&lHub Gun'
   lore: '&7Insert text here, or leave it empty.'
   slot: 2
 
 item-3:
-  enable: true
   item: diamond
   name: '&c&lA fine looking diamond'
   lore: ''
   slot: 3
 
 item-4:
-  enable: true
   item: watch
   name: '&c&lMagic Clock'
   lore: '&7Hide/Show players'
   slot: 4
 
 item-5:
-  enable: true
   item: string
   name: '&c&lThis is string.'
   lore: ''
   slot: 5
+
 item-6:
   enable: true
   item: emerald
   name: '&c&lShine bright like a emerald'
   lore: '&7Insert text here'
   slot: 6
+
 item-7:
-  enable: true
   item: book
   name: '&c&lbook'
   lore: '&7Be smart, read'
   slot: 7
+
 item-8:
-  enable: true
   item: stone
   name: '&c&lStone is a stone'
   lore: '&7Insert text here'
   slot: 8
+
 item-9:
-  enable: false
   item: bedrock
   name: '&c&lfoo'
   lore: '&7bedrock oo'
