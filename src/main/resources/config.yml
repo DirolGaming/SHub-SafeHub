@@ -23,15 +23,16 @@ chat-mute: "&7Chat has been muted!"
 #Conf this as you wish - beta
 enable-sound: true
 sounds:
-- "CAT_AMBIENT:10:1"
-- "WOLF_AMBIENT:10:1"
-- "ENDERDRAGON_FLAP:10:1"
-- "WATER_AMBIENT:10:1"
+  - "ENTITY_CAT_AMBIENT:10:1"
+  - "ENTITY_WOLF_AMBIENT:10:1"
+  - "ENTITY_ENDERDRAGON_FLAP:10:1"
+  - "BLOCK_WATER_AMBIENT:10:1"
 enable-effect: true
-- "MOBSPAWNER_FLAMES:5"
-- "MOBSPAWNER_FLAMES:5"
-- "MOBSPAWNER_FLAMES:5"
-- "ENDER_SIGNAL:5"
+effects:
+  - "MOBSPAWNER_FLAMES:5"
+  - "MOBSPAWNER_FLAMES:5"
+  - "MOBSPAWNER_FLAMES:5"
+  - "ENDER_SIGNAL:5"
 
 #Effect, effects have a BUKKIT Effect name. The plugin will capitalize the Effect names. To see available effects go here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
 #Be careful with it, because it can cause problems when you accidentaly insert a Sound Effect, not a Particle Effect
@@ -137,6 +138,15 @@ set-hub: '&7New &c&lHub &7location has been set.'
 #Select if you want to allow item-drops and inventory-interaction. Inventory-interaction will only affect those players who are on Survival/Adventure gamemodes
 item-drop: false
 inventory-interaction: false
+
+#MOTD - Message Of The Day
+motd:
+  enable: true
+  motd: "&7Welcome to this server!"
+  enable-hover: true
+  motd-hover: "&7Click on this text to open a URL!"
+  enable-click: true
+  click-url: "www.sitanikerdis.ee"
 
 #Do you want to clear player's inventories when they leave/join the server? Items what are spawned by SHub will not be affected by this
 #I recommend leaving this to false when using this plugin in a per-world server
