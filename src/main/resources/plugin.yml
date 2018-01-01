@@ -2,7 +2,7 @@ name: SafeHub
 version: ${project.version}
 author: DirolGaming
 depend: [ProvidersLib]
-main: me.DirolGaming.SHub.main
+main: me.dirolgaming.shub.main
 commands:
    sethub:
       description: Use /shub to see available commands.
