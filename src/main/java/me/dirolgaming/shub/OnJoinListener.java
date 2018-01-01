@@ -1,6 +1,11 @@
 package me.dirolgaming.shub;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
 import java.util.Arrays;
 
 import static org.bukkit.event.EventPriority.MONITOR;
@@ -22,6 +28,16 @@ public class OnJoinListener implements Listener {
     @EventHandler(priority = MONITOR, ignoreCancelled = true)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        TextComponent motd1 = new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd.motd")));
+        if (plugin.getConfig().getBoolean("motd.enable")) {
+            if (plugin.getConfig().getBoolean("motd.enable-hover")) {
+            motd1.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder (ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd.motd-hover"))).create()));
+            }
+            if (plugin.getConfig().getBoolean("motd.enable-click")) {
+                motd1.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, plugin.getConfig().getString("motd.click-url")));
+            }
+            player.spigot().sendMessage(motd1);
+        }
         if (plugin.getConfig().getBoolean("teleport-on-join")) {
             player.teleport(plugin.spawnpoint.getSpawnpoint(Bukkit.getWorld(plugin.getConfig().getString("world"))));
         }
