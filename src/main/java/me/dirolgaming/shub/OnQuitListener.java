@@ -15,11 +15,9 @@ public class OnQuitListener implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        if (player.getLocation().getWorld().equals(plugin.getConfig().getString("world"))) {
-            if (plugin.getConfig().getString("clear-on-quit").equals("true")) {
-                event.getPlayer().getInventory().clear();
-                plugin.getLogger().info("Shub: quit - Inventory cleared");
-            }
+        if (player.getLocation().getWorld().equals(plugin.getConfig().getString("world")) && (plugin.getConfig().getBoolean("clear-on-quit"))) {
+            player.getInventory().clear();
+            plugin.getLogger().info("SHub - Player inventory cleared on quit.");
         }
         if (plugin.getConfig().getBoolean("enable-join-quit-messages")) {
             event.setQuitMessage(plugin.getConfig().getString("quit-message")
