@@ -29,6 +29,13 @@ public class OnJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         TextComponent motd1 = new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd.motd")));
+        if(plugin.getConfig().getBoolean("enable-join-quit-messages")) {
+            event.setJoinMessage(plugin.getConfig().getString("join-message")
+                    .replaceAll("&", "§")
+                    .replace("%player%", player.getName())
+            );
+
+        }
         if (plugin.getConfig().getBoolean("motd.enable")) {
             if (plugin.getConfig().getBoolean("motd.enable-hover")) {
             motd1.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder (ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd.motd-hover"))).create()));
@@ -69,15 +76,6 @@ public class OnJoinListener implements Listener {
                 player.setFoodLevel(20);
             }
         }
-
-        if(plugin.getConfig().getBoolean("enable-join-quit-messages")) {
-            event.setJoinMessage(plugin.getConfig().getString("join-message")
-                    .replaceAll("&", "§")
-                    .replace("%player%", player.getName())
-            );
-
-        }
-
         if (plugin.getConfig().getBoolean("jointitle.enable")) {
             plugin.title.sendTitle(player, fadein, stay, fadeout, title, subtitle);
         }
@@ -88,15 +86,16 @@ public class OnJoinListener implements Listener {
 
         if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
             if (event.getPlayer().hasPermission("safehub.receive")) {
-
-                    ItemStack itm1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);
-                    ItemMeta im = itm1.getItemMeta();
-                    im.setDisplayName(plugin.getConfig().getString("item-1.name", "").replaceAll("&", "§"));
-                    im.setLore(Arrays.asList(plugin.getConfig().getString("item-1.lore", "").replaceAll("&", "§")));
-                    itm1.setItemMeta(im);
-                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-1.slot") - 1, itm1);
-                    event.getPlayer().updateInventory();
-
+                    if (!plugin.getConfig().getString("item-1.item").equals("-")) {
+                        ItemStack itm1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);
+                        ItemMeta im = itm1.getItemMeta();
+                        im.setDisplayName(plugin.getConfig().getString("item-1.name", "").replaceAll("&", "§"));
+                        im.setLore(Arrays.asList(plugin.getConfig().getString("item-1.lore", "").replaceAll("&", "§")));
+                        itm1.setItemMeta(im);
+                        event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-1.slot") - 1, itm1);
+                        event.getPlayer().updateInventory();
+                    }
+                if (!plugin.getConfig().getString("item-2.item").equals("-")) {
                     ItemStack itm2 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-2.item", "AIR").toUpperCase()), 1);
                     ItemMeta pm = itm2.getItemMeta();
                     pm.setDisplayName(plugin.getConfig().getString("item-2.name", "").replaceAll("&", "§"));
@@ -104,8 +103,8 @@ public class OnJoinListener implements Listener {
                     itm2.setItemMeta(pm);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-2.slot") - 1, itm2);
                     event.getPlayer().updateInventory();
-
-
+                }
+                if (!plugin.getConfig().getString("item-3.item").equals("-")) {
                     ItemStack itm3 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-3.item", "AIR").toUpperCase()), 1);
                     ItemMeta cm = itm3.getItemMeta();
                     cm.setDisplayName(plugin.getConfig().getString("item-3.name", "").replaceAll("&", "§"));
@@ -113,8 +112,8 @@ public class OnJoinListener implements Listener {
                     itm3.setItemMeta(cm);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-3.slot") - 1, itm3);
                     event.getPlayer().updateInventory();
-
-
+                }
+                if (!plugin.getConfig().getString("item-4.item").equals("-")) {
                     ItemStack itm4 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-4.item", "AIR").toUpperCase()), 1);
                     ItemMeta om = itm4.getItemMeta();
                     om.setDisplayName(plugin.getConfig().getString("item-4.name", "").replaceAll("&", "§"));
@@ -122,8 +121,8 @@ public class OnJoinListener implements Listener {
                     itm4.setItemMeta(om);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-4.slot") - 1, itm4);
                     event.getPlayer().updateInventory();
-
-
+                }
+                if (!plugin.getConfig().getString("item-5.item").equals("-")) {
                     ItemStack itm5 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-5.item", "AIR").toUpperCase()), 1);
                     ItemMeta um = itm5.getItemMeta();
                     um.setDisplayName(plugin.getConfig().getString("item-5.name", "").replaceAll("&", "§"));
@@ -131,39 +130,43 @@ public class OnJoinListener implements Listener {
                     itm5.setItemMeta(um);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-5.slot") - 1, itm5);
                     event.getPlayer().updateInventory();
-
-
+                }
+                if (!plugin.getConfig().getString("item-6.item").equals("-")) {
                     ItemStack itm6 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-6.item", "AIR").toUpperCase()), 1);
                     ItemMeta ugm = itm6.getItemMeta();
-                    um.setDisplayName(plugin.getConfig().getString("item-6.name", "").replaceAll("&", "§"));
-                    um.setLore(Arrays.asList(plugin.getConfig().getString("item-6.lore", "").replaceAll("&", "§")));
-                    itm6.setItemMeta(um);
+                    ugm.setDisplayName(plugin.getConfig().getString("item-6.name", "").replaceAll("&", "§"));
+                    ugm.setLore(Arrays.asList(plugin.getConfig().getString("item-6.lore", "").replaceAll("&", "§")));
+                    itm6.setItemMeta(ugm);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-6.slot") - 1, itm6);
                     event.getPlayer().updateInventory();
-
+                }
+                if (!plugin.getConfig().getString("item-7.item").equals("-")) {
                     ItemStack itm7 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-7.item", "AIR").toUpperCase()), 1);
                     ItemMeta uum = itm7.getItemMeta();
-                    um.setDisplayName(plugin.getConfig().getString("item-7.name", "").replaceAll("&", "§"));
-                    um.setLore(Arrays.asList(plugin.getConfig().getString("item-7.lore", "").replaceAll("&", "§")));
-                    itm7.setItemMeta(um);
+                    uum.setDisplayName(plugin.getConfig().getString("item-7.name", "").replaceAll("&", "§"));
+                    uum.setLore(Arrays.asList(plugin.getConfig().getString("item-7.lore", "").replaceAll("&", "§")));
+                    itm7.setItemMeta(uum);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-7.slot") - 1, itm7);
                     event.getPlayer().updateInventory();
-
+                }
+                if (!plugin.getConfig().getString("item-8.item").equals("-")) {
                     ItemStack itm8 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-8.item", "AIR").toUpperCase()), 1);
                     ItemMeta ufm = itm8.getItemMeta();
-                    um.setDisplayName(plugin.getConfig().getString("item-8.name", "").replaceAll("&", "§"));
-                    um.setLore(Arrays.asList(plugin.getConfig().getString("item-8.lore", "").replaceAll("&", "§")));
-                    itm8.setItemMeta(um);
+                    ufm.setDisplayName(plugin.getConfig().getString("item-8.name", "").replaceAll("&", "§"));
+                    ufm.setLore(Arrays.asList(plugin.getConfig().getString("item-8.lore", "").replaceAll("&", "§")));
+                    itm8.setItemMeta(ufm);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-8.slot") - 1, itm8);
                     event.getPlayer().updateInventory();
-
+                }
+                if (!plugin.getConfig().getString("item-9.item").equals("-")) {
                     ItemStack itm9 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-9.item", "AIR").toUpperCase()), 1);
                     ItemMeta uhm = itm9.getItemMeta();
-                    um.setDisplayName(plugin.getConfig().getString("item-9.name", "").replaceAll("&", "§"));
-                    um.setLore(Arrays.asList(plugin.getConfig().getString("item-9.lore", "").replaceAll("&", "§")));
-                    itm9.setItemMeta(um);
+                    uhm.setDisplayName(plugin.getConfig().getString("item-9.name", "").replaceAll("&", "§"));
+                    uhm.setLore(Arrays.asList(plugin.getConfig().getString("item-9.lore", "").replaceAll("&", "§")));
+                    itm9.setItemMeta(uhm);
                     event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-9.slot") - 1, itm9);
                     event.getPlayer().updateInventory();
+                }
             }
         }
         if (player.hasPermission("safehub.admin")) {
