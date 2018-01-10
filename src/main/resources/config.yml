@@ -155,7 +155,7 @@ clear-on-join: false
 
 #Would you like to deny players placing down blocks (leave it to false, if you do not want the plugin to deny players from placing blocks or you have another plugin handling this)
 on-place-block-deny: true
-
+block-place-denymsg: "&7Block placing has been deactivated in the SHub config."
 #Boolean values (they can only be true or false)
 gamemode-on-join-adventure: true
 disable-fall-damage: true

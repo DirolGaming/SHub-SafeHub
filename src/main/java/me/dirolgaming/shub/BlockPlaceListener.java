@@ -22,6 +22,7 @@ public class BlockPlaceListener
                 (plugin.getConfig().getString("on-place-block-deny").equals("true")) && (
                 (event.getPlayer().getGameMode() == GameMode.ADVENTURE) ||
                         (event.getPlayer().getGameMode() == GameMode.SURVIVAL))) {
+            event.getPlayer().sendMessage(plugin.getConfig().getString("block-place-denymsg"));
             event.setCancelled(true);
         }
     }
