@@ -19,8 +19,7 @@ enable-effect: true
 chat-unmute: "&7Chat has been unmuted!"
 chat-mute: "&7Chat has been muted!"
 
-#This is the Hub Gun sounds and effects part
-#Conf this as you wish - beta
+# Hub gun sounds and effects section
 enable-sound: true
 sounds:
   - "ENTITY_CAT_AMBIENT:10:1"
