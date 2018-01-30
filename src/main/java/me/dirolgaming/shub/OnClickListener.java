@@ -64,7 +64,7 @@ public class OnClickListener implements Listener {
                             e.getPlayer().showPlayer(plugin, p);
                         }
                     });
-                    player.sendMessage(plugin.getConfig().getString("show-players-mssage").replaceAll("&", "§"));
+                    player.sendMessage(plugin.getConfig().getString("show-players-message").replaceAll("&", "§"));
                 } else {
                     plugin.clock.add(player.getName());
                     plugin.getServer().getOnlinePlayers().forEach(p -> {
