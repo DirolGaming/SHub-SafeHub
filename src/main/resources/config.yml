@@ -1,12 +1,12 @@
-#SHub - By DirolGaming
+# SHub - By DirolGaming
 
-#The world where the plugin is enabled
+# The world where the plugin is enabled
 world: 'world'
 
-#Teleport on join - Select if you want to teleport players directly to hub when they join.
+# Teleport on join - Select if you want to teleport players directly to hub when they join.
 teleport-on-join: true
 
-#SHub doublejump settings
+# Doublejump settings
 velocity: 1.5
 enable-doublejump: true
 dnable-doublejump-Messages: true
@@ -14,12 +14,20 @@ doublejump-message: '&7Woosh!'
 doublejump-cooldownleft: '&7You must wait &c&l%time% &7seconds to doublejump again'
 doublejump-cooldownmessage: '&7You can now use the doublejump function again!'
 enable-effect: true
-
+#Effect, effects have a BUKKIT Effect name. The plugin will capitalize the Effect names. To see available effects go here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
+#Be careful with it, because it can cause problems when you accidentaly insert a Sound Effect, not a Particle Effect
+#This is the doublejump effect
+effect: 'MOBSPAWNER_FLAMES'
 #SHub chat toggle messages
 chat-unmute: "&7Chat has been unmuted!"
 chat-mute: "&7Chat has been muted!"
 
 # Hub gun sounds and effects section
+# These use basically the same format as the Doublejump effect, but with these you have more control over the sounds and effects.
+# For example: ENTITY_CAT_AMBIENT:10:1 means that the sound is ENTITY_CAT_AMBIENT, the speed of it is 10 and the pitch of it is 1 changing the speed and the pitch of sounds and effects is entirely up to you.
+# For available Sounds and Effects visit these sites:
+# Sounds: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+# Effects: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
 enable-sound: true
 sounds:
   - "ENTITY_CAT_AMBIENT:10:1"
@@ -33,19 +41,14 @@ effects:
   - "MOBSPAWNER_FLAMES:5"
   - "ENDER_SIGNAL:5"
 
-#Effect, effects have a BUKKIT Effect name. The plugin will capitalize the Effect names. To see available effects go here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
-#Be careful with it, because it can cause problems when you accidentaly insert a Sound Effect, not a Particle Effect
-#This is the doublejump effect
-effect: 'MOBSPAWNER_FLAMES'
-
-#Disable this if you don't want the plugin to check for updates straight from the plugin page
+# Plugin update checker and notifier.
 check-update: true
 notify-update: true
 enable-notifications: '&c&lSafeHub &7update notifications are now &a&lenabled&7!'
 disable-notifications: '&c&lSafeHub &7update notifications are now &c&ldisabled&7!'
 
-#Join Title, this is the part where you can enable/disable and change join title messages. Use "%player%" to display the player's name or "%online%" to display how many playersa are online
-#The time is in ticks, so 20 = 1s etc.
+# Join Title, this is the part where you can enable/disable and change join title messages. Use "%player%" to display the player's name or "%online%" to display how many players are online
+# The time is in ticks, so 20 = 1s and so on.
 jointitle:
   enable: true
   fadein: 30
@@ -54,15 +57,18 @@ jointitle:
   title: '&7Welcome, &c&l%player%!'
   subtitle: '&bHave fun!'
 
-#ActionBar. You Can send people customizable messages, what will appear on the player's actionbar when they join. Use "%player%% to display the player's name. The time is in ticks, so 20 = 1 second, etc
+# ActionBar. You Can send people customizable messages, what will appear on the player's actionbar when they join. Use "%player%% to display the player's name. The time is in ticks, so 20 = 1 second, etc
 actionbar:
   enable: true
   message: '&7Hello, &c&l%player%&7, there are &c&l%online% &7players online!'
   stay: 40
 
-#items - items must have a BUKKIT Material name, otherwise they won't work. The plugin will capitalize the item names, so don't worry about that
-#If you want to make a great server selector, use ItemCommands & ChestCommandsGUI plugins to make an awesome looking server selector
-#If you do not want to use all of the customizable 5 items, you can disable them one at a time by changing "enable: true" to "enable: false"
+# items - items must have a BUKKIT Material name, otherwise they won't work. The plugin will capitalize the item names, so don't worry about that
+# If you want to make a great server selector, use ItemCommands & ChestCommandsGUI plugins to make an awesome looking server selector
+# If you do not want to use all of the customizable 9 items, you can disable them one at a time by changing their name to "-"
+# Example:
+# item-x:
+# item: "-"
 item-1:
   item: compass
   name: '&c&lServer selector'
@@ -174,4 +180,4 @@ cordinate-y: 15
 #If you have found a bug, please PM me, or post it in the Discussion section of the Plugin Spigot page
 
 #No need to touch this
-config ver: 1.0.4
+config ver: 2.0.0
