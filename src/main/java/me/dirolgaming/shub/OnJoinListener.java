@@ -79,21 +79,24 @@ public class OnJoinListener implements Listener {
 
         // Actionbar enabler and executer
         if (plugin.getConfig().getBoolean("actionbar.enable")) {
-            String actionbarmsg = plugin.getConfig().getString("actionbar.message").replaceAll("&", "§").replaceAll("%player%", player.getName()).replaceAll("%online%", ""+org.bukkit.Bukkit.getOnlinePlayers().size());
+            String actionbarmsg = plugin.getConfig().getString("actionbar.message")
+                    .replaceAll("&", "§")
+                    .replaceAll("%player%", player.getName())
+                    .replaceAll("%online%", ""+org.bukkit.Bukkit.getOnlinePlayers().size());
             plugin.actionbar.sendActionbar(player, actionbarmsg, actionbartime);
         }
         // Item spawner
         if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
             if (event.getPlayer().hasPermission("safehub.receive")) {
-                    if (!plugin.getConfig().getString("item-1.item").equals("-")) {
-                        ItemStack itm1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);
-                        ItemMeta im = itm1.getItemMeta();
-                        im.setDisplayName(plugin.getConfig().getString("item-1.name", "").replaceAll("&", "§"));
-                        im.setLore(Arrays.asList(plugin.getConfig().getString("item-1.lore", "").replaceAll("&", "§")));
-                        itm1.setItemMeta(im);
-                        event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-1.slot") - 1, itm1);
-                        event.getPlayer().updateInventory();
-                    }
+                if (!plugin.getConfig().getString("item-1.item").equals("-")) {
+                    ItemStack itm1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);
+                    ItemMeta im = itm1.getItemMeta();
+                    im.setDisplayName(plugin.getConfig().getString("item-1.name", "").replaceAll("&", "§"));
+                    im.setLore(Arrays.asList(plugin.getConfig().getString("item-1.lore", "").replaceAll("&", "§")));
+                    itm1.setItemMeta(im);
+                    event.getPlayer().getInventory().setItem(plugin.getConfig().getInt("item-1.slot") - 1, itm1);
+                    event.getPlayer().updateInventory();
+                }
                 if (!plugin.getConfig().getString("item-2.item").equals("-")) {
                     ItemStack itm2 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-2.item", "AIR").toUpperCase()), 1);
                     ItemMeta pm = itm2.getItemMeta();
