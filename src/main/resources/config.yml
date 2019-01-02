@@ -1,7 +1,14 @@
 # SHub - By DirolGaming
 
-# The world where the plugin is enabled
-world: 'world'
+# This is the section where the plugin saves Hub location info automatically. You can manually change these values, but do it only if you know what you are doing.
+# These values will be automatically updated when an admin executes the /sethub command.
+world:
+  name: 'world'
+  X:
+  Y:
+  Z:
+  Yaw:
+  Pitch:
 
 # Teleport on join - Select if you want to teleport players directly to hub when they join.
 teleport-on-join: true
@@ -9,11 +16,11 @@ teleport-on-join: true
 # Doublejump settings
 velocity: 1.5
 enable-doublejump: true
-dnable-doublejump-Messages: true
+enable-doublejump-Messages: true
 doublejump-message: '&7Woosh!'
 doublejump-cooldownleft: '&7You must wait &c&l%time% &7seconds to doublejump again'
 doublejump-cooldownmessage: '&7You can now use the doublejump function again!'
-enable-effect: true
+effect-enable: true
 #Effect, effects have a BUKKIT Effect name. The plugin will capitalize the Effect names. To see available effects go here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
 #Be careful with it, because it can cause problems when you accidentaly insert a Sound Effect, not a Particle Effect
 #This is the doublejump effect
@@ -32,7 +39,7 @@ enable-sound: true
 sounds:
   - "ENTITY_CAT_AMBIENT:10:1"
   - "ENTITY_WOLF_AMBIENT:10:1"
-  - "ENTITY_ENDERDRAGON_FLAP:10:1"
+  - "ENTITY_ENDER_DRAGON_FLAP:10:1"
   - "BLOCK_WATER_AMBIENT:10:1"
 enable-effect: true
 effects:
@@ -47,28 +54,13 @@ notify-update: true
 enable-notifications: '&c&lSafeHub &7update notifications are now &a&lenabled&7!'
 disable-notifications: '&c&lSafeHub &7update notifications are now &c&ldisabled&7!'
 
-# Join Title, this is the part where you can enable/disable and change join title messages. Use "%player%" to display the player's name or "%online%" to display how many players are online
-# The time is in ticks, so 20 = 1s and so on.
-jointitle:
-  enable: true
-  fadein: 30
-  stay: 80
-  fadeout: 30
-  title: '&7Welcome, &c&l%player%!'
-  subtitle: '&bHave fun!'
-
-# ActionBar. You Can send people customizable messages, what will appear on the player's actionbar when they join. Use "%player%% to display the player's name. The time is in ticks, so 20 = 1 second, etc
-actionbar:
-  enable: true
-  message: '&7Hello, &c&l%player%&7, there are &c&l%online% &7players online!'
-  stay: 40
 
 # items - items must have a BUKKIT Material name, otherwise they won't work. The plugin will capitalize the item names, so don't worry about that
 # If you want to make a great server selector, use ItemCommands & ChestCommandsGUI plugins to make an awesome looking server selector
 # If you do not want to use all of the customizable 9 items, you can disable them one at a time by changing their name to "-"
 # Example:
 # item-x:
-# item: "-"
+#   item: "-"
 item-1:
   item: compass
   name: '&c&lServer selector'
@@ -88,38 +80,37 @@ item-3:
   slot: 3
 
 item-4:
-  item: watch
+  item: clock
   name: '&c&lMagic Clock'
   lore: '&7Hide/Show players'
   slot: 4
 
 item-5:
-  item: string
+  item: "-"
   name: '&c&lThis is string.'
   lore: ''
   slot: 5
 
 item-6:
-  enable: true
-  item: emerald
+  item: "-"
   name: '&c&lShine bright like a emerald'
   lore: '&7Insert text here'
   slot: 6
 
 item-7:
-  item: book
+  item: "-"
   name: '&c&lbook'
   lore: '&7Be smart, read'
   slot: 7
 
 item-8:
-  item: stone
+  item: "-"
   name: '&c&lStone is a stone'
   lore: '&7Insert text here'
   slot: 8
 
 item-9:
-  item: bedrock
+  item: "-"
   name: '&c&lfoo'
   lore: '&7bedrock oo'
   slot: 9
@@ -130,7 +121,7 @@ join-message: '&c&l%player% &7has joined the server!'
 quit-message: '&c&l%player% &7has left the server!'
 
 #Basic implementation of disabling time
-lock-time: true
+lock-time: false
 time: 5600
 
 #Some common messages of SHub
@@ -161,6 +152,7 @@ clear-on-join: false
 #Would you like to deny players placing down blocks (leave it to false, if you do not want the plugin to deny players from placing blocks or you have another plugin handling this)
 on-place-block-deny: true
 block-place-denymsg: "&7Block placing has been deactivated in the SHub config."
+
 #Boolean values (they can only be true or false)
 gamemode-on-join-adventure: true
 disable-fall-damage: true
@@ -179,5 +171,5 @@ cordinate-y: 15
 #Thank you for downloading this plugin, if you like this plugin or have any feedback, please post it in the review section on the Plugin Spigot page.
 #If you have found a bug, please PM me, or post it in the Discussion section of the Plugin Spigot page
 
-#No need to touch this
-config ver: 2.0.0
+#DO NOT TOUCH THIS
+config-ver: 3.0.0
