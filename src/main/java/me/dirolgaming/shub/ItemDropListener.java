@@ -19,7 +19,7 @@ public class ItemDropListener
     @EventHandler
     public void onDrop(PlayerDropItemEvent event)
     {
-        if ((event.getPlayer().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
+        if ((event.getPlayer().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world.name")))) &&
                 (this.plugin.getConfig().getString("item-drop").equals("false")) && (
                 (event.getPlayer().getGameMode() == GameMode.SURVIVAL) ||
                         (event.getPlayer().getGameMode() == GameMode.ADVENTURE))) {

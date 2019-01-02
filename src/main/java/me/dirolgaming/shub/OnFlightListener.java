@@ -24,7 +24,7 @@ public class OnFlightListener
     {
         Effect effect = Effect.valueOf(this.plugin.getConfig().getString("effect").toUpperCase());
         final Player player = event.getPlayer();
-        if (player.getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) {
+        if (player.getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world.name")))) {
             if (plugin.getConfig().getBoolean("enable-doublejump")) {
                 if (player.getGameMode() == GameMode.CREATIVE) {
                     return;
@@ -64,7 +64,7 @@ public class OnFlightListener
                     }
                 });
                 (plugin.doublejumpcooldownTask.get(player)).runTaskTimer(plugin, 20L, 20L);
-                if (plugin.getConfig().getBoolean("enable-effect"))
+                if (plugin.getConfig().getBoolean("effect-enable"))
                 {
                     player.playEffect(player.getLocation(), effect, null);
                     player.playEffect(player.getLocation(), effect, null);

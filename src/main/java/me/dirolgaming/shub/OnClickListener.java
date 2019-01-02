@@ -23,7 +23,7 @@ public class OnClickListener implements Listener {
     public void onclickBLAZEROD(PlayerInteractEvent e) {
         final Player p = e.getPlayer();
         Player player = e.getPlayer();
-        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
             if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) &&
                     p.getInventory().getItemInMainHand().getType().equals(Material.BLAZE_ROD)) {
                 if (plugin.cooldownTime.containsKey(p)) {
@@ -54,9 +54,9 @@ public class OnClickListener implements Listener {
     @EventHandler
     public void onclickMagic(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
             if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) &&
-                    player.getInventory().getItemInMainHand().getType().equals(Material.WATCH)) {
+                    player.getInventory().getItemInMainHand().getType().equals(Material.CLOCK)) {
                 if (plugin.clock.contains(player.getName())) {
                     plugin.clock.remove(player.getName());
                     plugin.getServer().getOnlinePlayers().forEach(p -> {
@@ -80,7 +80,7 @@ public class OnClickListener implements Listener {
     @EventHandler
     public void onClickDiamond(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
             if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) &&
                     player.getInventory().getItemInMainHand().getType().equals(Material.DIAMOND)) {
                 if (plugin.chat.contains(player.getName())) {
@@ -98,7 +98,7 @@ public class OnClickListener implements Listener {
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
         Player player = e.getPlayer();
         if (plugin.chat.contains(player.getName())) {
-            if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+            if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
                 e.setCancelled(true);
             }
         }

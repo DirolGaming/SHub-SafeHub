@@ -18,7 +18,7 @@ public class BlockPlaceListener
     @EventHandler
     public void onPlace(BlockPlaceEvent event)
     {
-        if ((event.getPlayer().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) &&
+        if ((event.getPlayer().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) &&
                 (plugin.getConfig().getString("on-place-block-deny").equals("true")) && (
                 (event.getPlayer().getGameMode() == GameMode.ADVENTURE) ||
                         (event.getPlayer().getGameMode() == GameMode.SURVIVAL))) {

@@ -19,7 +19,7 @@ public class HungerDepleteListener
     @EventHandler
     public void onHungerDeplete(FoodLevelChangeEvent event)
     {
-        if ((event.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
+        if ((event.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world.name")))) &&
                 ((event.getEntity() instanceof Player)) && (plugin.getConfig().getBoolean("disable-hunger"))) {
             event.setCancelled(true);
         }

@@ -23,7 +23,7 @@ public class ProjectileHitListener
 
     @EventHandler
     public void onHit(ProjectileHitEvent e) {
-        if ((e.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) &&
+        if ((e.getEntity().getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) &&
                 ((e.getEntity() instanceof Snowball))) {
             Location snowball = e.getEntity().getLocation();
             World world = e.getEntity().getWorld();

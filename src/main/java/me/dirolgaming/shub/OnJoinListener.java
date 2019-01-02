@@ -4,9 +4,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,6 +26,7 @@ public class OnJoinListener implements Listener {
     @EventHandler(priority = MONITOR, ignoreCancelled = true)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        World world = Bukkit.getWorld(plugin.getConfig().getString("world.name"));
         TextComponent motd1 = new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd.motd")));
         // Join message
         if(plugin.getConfig().getBoolean("enable-join-quit-messages")) {
@@ -48,45 +47,33 @@ public class OnJoinListener implements Listener {
             player.spigot().sendMessage(motd1);
         }
         if (plugin.getConfig().getBoolean("teleport-on-join")) {
-            player.teleport(plugin.spawnpoint.getSpawnpoint(Bukkit.getWorld(plugin.getConfig().getString("world"))));
+            Integer yaw = plugin.getConfig().getInt("world.Yaw");
+            Integer pitch = plugin.getConfig().getInt("world.pitch");
+            Location loc = new Location(Bukkit.getWorld(plugin.getConfig().getString("world.name")),
+                    plugin.getConfig().getDouble("world.X"),
+                    plugin.getConfig().getDouble("world.Y"),
+                    plugin.getConfig().getDouble("world.Z"),
+                    yaw,
+                    pitch);
+            player.teleport(loc);
         }
         // Join title & ActionBar
-        String title = plugin.getConfig().getString("jointitle.title").replaceAll("&", "§").replaceAll("%player%", player.getName());
-        String subtitle = plugin.getConfig().getString("jointitle.subtitle").replaceAll("&", "§").replaceAll("%player%", player.getName());
-        int fadein = plugin.getConfig().getInt("jointitle.fadein", 20);
-        int fadeout = plugin.getConfig().getInt("jointitle.fadeout", 20);
-        int stay = plugin.getConfig().getInt("jointitle.stay", 20);
-        int actionbartime = plugin.getConfig().getInt("actionbar.stay", 20);
-        if (Bukkit.getWorld(plugin.getConfig().getString("world")).getTime() != plugin.getConfig().getInt("time") && plugin.getConfig().getBoolean("lock-time")) {
-            Bukkit.getWorld(plugin.getConfig().getString("world")).setTime(plugin.getConfig().getInt("time"));
+        if (Bukkit.getWorld(plugin.getConfig().getString("world.name")).getTime() != plugin.getConfig().getInt("time") && plugin.getConfig().getBoolean("lock-time")) {
+            Bukkit.getWorld(plugin.getConfig().getString("world.name")).setTime(plugin.getConfig().getInt("time"));
             }
             // Hunger
         if(plugin.getConfig().getBoolean("disable-hunger")) {
-            if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+            if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
                 player.setFoodLevel(20);
             }
         }
-        // Join Title enabler and executer
-        if (plugin.getConfig().getBoolean("jointitle.enable")) {
-            plugin.title.sendTitle(player, fadein, stay, fadeout, title, subtitle);
-        }
         // Clean inventory on join
-        if (plugin.getConfig().getBoolean("clear-on-join") && (player.getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world"))))) {
+        if (plugin.getConfig().getBoolean("clear-on-join") && (player.getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name"))))) {
             player.getInventory().clear();
             plugin.getLogger().info("SHub - Player inventory cleared on join");
         }
-
-
-        // Actionbar enabler and executer
-        if (plugin.getConfig().getBoolean("actionbar.enable")) {
-            String actionbarmsg = plugin.getConfig().getString("actionbar.message")
-                    .replaceAll("&", "§")
-                    .replaceAll("%player%", player.getName())
-                    .replaceAll("%online%", ""+org.bukkit.Bukkit.getOnlinePlayers().size());
-            plugin.actionbar.sendActionbar(player, actionbarmsg, actionbartime);
-        }
         // Item spawner
-        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+        if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
             if (event.getPlayer().hasPermission("safehub.receive")) {
                 if (!plugin.getConfig().getString("item-1.item").equals("-")) {
                     ItemStack itm1 = new ItemStack(Material.getMaterial(plugin.getConfig().getString("item-1.item", "AIR").toUpperCase()), 1);

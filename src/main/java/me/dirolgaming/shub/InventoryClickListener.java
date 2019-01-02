@@ -19,7 +19,7 @@ public class InventoryClickListener
     @EventHandler
     public void onMoveItem(InventoryClickEvent event)
     {
-        if ((event.getWhoClicked().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world")))) &&
+        if ((event.getWhoClicked().getLocation().getWorld().equals(Bukkit.getWorld(this.plugin.getConfig().getString("world.name")))) &&
                 (this.plugin.getConfig().getString("inventory-interaction").equals("false")) && (
                 (event.getWhoClicked().getGameMode() == GameMode.SURVIVAL) ||
                         (event.getWhoClicked().getGameMode() == GameMode.ADVENTURE))) {

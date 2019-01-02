@@ -15,7 +15,7 @@ public class OnQuitListener implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        if (player.getLocation().getWorld().equals(plugin.getConfig().getString("world")) && (plugin.getConfig().getBoolean("clear-on-quit"))) {
+        if (player.getLocation().getWorld().equals(plugin.getConfig().getString("world.name")) && (plugin.getConfig().getBoolean("clear-on-quit"))) {
             player.getInventory().clear();
             plugin.getLogger().info("SHub - Player inventory cleared on quit.");
         }

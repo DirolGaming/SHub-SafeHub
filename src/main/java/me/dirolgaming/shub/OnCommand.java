@@ -2,12 +2,14 @@ package me.dirolgaming.shub;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class OnCommand implements CommandExecutor {
+public class   OnCommand implements CommandExecutor {
     private final main plugin;
     public OnCommand(main plugin){
         this.plugin = plugin;
@@ -18,20 +20,29 @@ public class OnCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("sethub")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("safehub.sethub")) {
-                    if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
-                        plugin.spawnpoint.setSpawnpoint(Bukkit.getWorld(plugin.getConfig().getString("world")), player.getLocation());
+                World world = player.getLocation().getWorld();
+                Location loc = player.getLocation();
+                if (player.hasPermission("safehub.sethub") || (player.hasPermission("safehub.admin"))) {
+                    if (player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
+                        plugin.getConfig().set("world.X", loc.getBlockX());
+                        plugin.getConfig().set("world.Y", loc.getBlockY());
+                        plugin.getConfig().set("world.Z", loc.getBlockZ());
+                        plugin.getConfig().set("world.Yaw", loc.getYaw());
+                        plugin.getConfig().set("world.Pitch", loc.getPitch());
+                        plugin.getConfig().set("world.name", world.getName());
+                        plugin.saveConfig();
+                        plugin.reloadConfig();
                         player.sendMessage(plugin.getConfig().getString("set-hub").replaceAll("&", "§"));
                         return true;
                     }
-                    else if (!player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world")))) {
+                    else if (!player.getLocation().getWorld().equals(Bukkit.getWorld(plugin.getConfig().getString("world.name")))) {
                         player.sendMessage(ChatColor.RED + "Error: " + ChatColor.GRAY + "your world does not match the world in config.yml");
                     }
                     return true;
                 }
                 else {
                     if (!sender.hasPermission("safehub.sethub")) {
-                        sender.sendMessage(plugin.getConfig().getString("No-Permission").replaceAll("&", "§"));
+                        sender.sendMessage(plugin.getConfig().getString("no-permission").replaceAll("&", "§"));
                         return true;
                     }
                 }
@@ -40,8 +51,17 @@ public class OnCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("hub")){
             if (sender instanceof Player) {
                 Player player = (Player) sender;
+                Integer yaw = plugin.getConfig().getInt("world.Yaw");
+                Integer pitch = plugin.getConfig().getInt("world.pitch");
+                Location loc = new Location(Bukkit.getWorld(plugin.getConfig().getString("world.name")),
+                        plugin.getConfig().getDouble("world.X"),
+                        plugin.getConfig().getDouble("world.Y"),
+                        plugin.getConfig().getDouble("world.Z"),
+                        yaw,
+                        pitch);
+
                 if (sender.hasPermission("safehub.hub")) {
-                    player.teleport(plugin.spawnpoint.getSpawnpoint(Bukkit.getWorld(plugin.getConfig().getString("world"))));
+                    player.teleport(loc);
                     player.sendMessage(plugin.getConfig().getString("on-teleport-to-spawn").replaceAll("&", "§"));
                     return true;
                 }
