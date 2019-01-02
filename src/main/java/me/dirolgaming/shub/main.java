@@ -1,21 +1,18 @@
 package me.dirolgaming.shub;
 
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import eu.mikroskeem.providerslib.api.Actionbar;
-import eu.mikroskeem.providerslib.api.Providers;
-import eu.mikroskeem.providerslib.api.Spawnpoint;
-import eu.mikroskeem.providerslib.api.Title;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -26,13 +23,6 @@ public class main extends JavaPlugin implements Listener {
     HashMap<Player, BukkitRunnable> doublejumpcooldownTask = new HashMap();
     ArrayList<String> chat;
     ArrayList<String> clock;
-    @Inject
-    Actionbar actionbar;
-    @Inject
-    Title title;
-    @Inject
-    Spawnpoint spawnpoint;
-
     public void onEnable() {
         OnCommand onCommand = new OnCommand(this);
         getCommand("shub").setExecutor(onCommand);
@@ -52,21 +42,14 @@ public class main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
         getServer().getPluginManager().registerEvents(new WeatherChangeListener(this), this);
         saveDefaultConfig();
-
-        RegisteredServiceProvider<Providers> rsp = getServer().getServicesManager().getRegistration(Providers.class);
-        if (rsp == null) {
-            getLogger().severe("ProvidersLib wasn't initialized!");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-        Injector injector = ((Providers)rsp.getProvider()).getInjector();
-        injector.injectMembers(this);
-
-        getLogger().info("SafeHub" + getDescription().getVersion() + " has been activated.");
+        getLogger().info("SafeHub " + getDescription().getVersion() + " has been activated.");
         this.clock = new ArrayList();
         this.chat = new ArrayList();
         getServer().getScheduler().runTaskAsynchronously(this, () -> new MetricsLite(this));
         getServer().getScheduler().runTaskAsynchronously(this, () -> checkUpdate());
+        if (!getConfig().getString("config-ver").equals(getDescription().getVersion())) {
+            getLogger().severe("Your SafeHub config version does not match the plugin version. Please update your config (to get the latest config file, visit SafeHub Spigot page).");
+        }
     }
     public void checkUpdate()
     {
