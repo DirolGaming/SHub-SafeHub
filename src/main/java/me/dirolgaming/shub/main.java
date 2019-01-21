@@ -47,9 +47,8 @@ public class main extends JavaPlugin implements Listener {
         this.chat = new ArrayList();
         getServer().getScheduler().runTaskAsynchronously(this, () -> new MetricsLite(this));
         getServer().getScheduler().runTaskAsynchronously(this, () -> checkUpdate());
-        if (!getConfig().getString("config-ver").equals(getDescription().getVersion())) {
-            getLogger().severe("Your SafeHub config version does not match the plugin version. Please update your config (to get the latest config file, visit SafeHub Spigot page).");
-        }
+        getServer().getScheduler().runTaskAsynchronously(this, () -> checkVersion());
+
     }
     public void checkUpdate()
     {
@@ -68,6 +67,13 @@ public class main extends JavaPlugin implements Listener {
                 }
             }
             catch (Exception localException) {}
+        }
+    }
+
+    public void checkVersion()
+    {
+        if (!getConfig().getString("config-ver").equals(getDescription().getVersion())) {
+            getLogger().severe("Your SafeHub config version does not match the plugin version. Please update your config (to get the latest config file, visit SafeHub Spigot page).");
         }
     }
 }
