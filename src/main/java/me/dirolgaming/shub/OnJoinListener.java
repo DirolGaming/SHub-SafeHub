@@ -4,7 +4,10 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,7 +49,9 @@ public class OnJoinListener implements Listener {
             }
             player.spigot().sendMessage(motd1);
         }
+        // Join teleport
         if (plugin.getConfig().getBoolean("teleport-on-join")) {
+            // Get TP location
             Integer yaw = plugin.getConfig().getInt("world.Yaw");
             Integer pitch = plugin.getConfig().getInt("world.pitch");
             Location loc = new Location(Bukkit.getWorld(plugin.getConfig().getString("world.name")),
@@ -55,7 +60,19 @@ public class OnJoinListener implements Listener {
                     plugin.getConfig().getDouble("world.Z"),
                     yaw,
                     pitch);
-            player.teleport(loc);
+            // Default location if config is empty
+            Location dloc = Bukkit.getWorld(plugin.getConfig().getString("world.name")).getSpawnLocation();
+            // Determine if set location is not empty and is safe
+            Block feet = loc.getBlock();
+            Block head = feet.getRelative(BlockFace.UP);
+            if (plugin.getConfig().getString("world.usespawnpointinstead").equals("true"))  {
+                plugin.getLogger().warning("Hub is not set or is not safe for players, using world spawnpoint instead");
+                player.teleport(dloc);
+            }
+            else {
+                plugin.getLogger().info("Location is safe");
+                player.teleport(loc);
+            }
         }
         // Join title & ActionBar
         if (Bukkit.getWorld(plugin.getConfig().getString("world.name")).getTime() != plugin.getConfig().getInt("time") && plugin.getConfig().getBoolean("lock-time")) {
