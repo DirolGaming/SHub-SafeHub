@@ -43,22 +43,36 @@ public class main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
         getServer().getPluginManager().registerEvents(new WeatherChangeListener(this), this);
         getLogger().info("SafeHub " + getDescription().getVersion() + " has been activated.");
+        saveDefaultConfig();
         this.clock = new ArrayList();
         this.chat = new ArrayList();
         // Add Metrics
         getServer().getScheduler().runTaskAsynchronously(this, () -> new MetricsLite(this));
         getServer().getScheduler().runTaskAsynchronously(this, () -> checkUpdate());
+
         if (!getConfig().getString("config-ver").equals(getDescription().getVersion())) {
-            File file = new File(getDataFolder(), "config.yml");
-            file.renameTo(new File(getDataFolder(),"old_c.yml"));
-            YamlConfiguration.loadConfiguration(file);
-            saveDefaultConfig();
-            reloadConfig();
-            getLogger().severe("Your SafeHub config is outdated, your current config has been renamed to old_config.yml");
+            File file1 = new File(getDataFolder(), "config.yml");
+            File file2 = new File(getDataFolder(), "old_config.yml");
+            if (file2.exists()) {
+                getLogger().severe("Old config already exists, removed old config.");
+                file2.delete();
+                file1.renameTo(new File(getDataFolder(),"old_config.yml"));
+                YamlConfiguration.loadConfiguration(file1);
+                saveDefaultConfig();
+                reloadConfig();
+            }
+            else if (!file2.exists()){
+                file1.renameTo(new File(getDataFolder(),"old_config.yml"));
+                YamlConfiguration.loadConfiguration(file1);
+                saveDefaultConfig();
+                reloadConfig();
+                getLogger().severe("Your SafeHub config is outdated, your current config has been renamed to old_config.yml");
+            }
+            else {
+                saveDefaultConfig();
+            }
         }
-        else {
-            saveDefaultConfig();
-        }
+
     }
     public void checkUpdate()
     {
