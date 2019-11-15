@@ -24,6 +24,7 @@ public class main extends JavaPlugin implements Listener {
     ArrayList<String> chat;
     ArrayList<String> clock;
     public void onEnable() {
+        // Register classes & commands
         OnCommand onCommand = new OnCommand(this);
         getCommand("shub").setExecutor(onCommand);
         getCommand("hub").setExecutor(onCommand);
@@ -41,14 +42,23 @@ public class main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new MoveListener(this), this);
         getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
         getServer().getPluginManager().registerEvents(new WeatherChangeListener(this), this);
-        saveDefaultConfig();
         getLogger().info("SafeHub " + getDescription().getVersion() + " has been activated.");
         this.clock = new ArrayList();
         this.chat = new ArrayList();
+        // Add Metrics
         getServer().getScheduler().runTaskAsynchronously(this, () -> new MetricsLite(this));
         getServer().getScheduler().runTaskAsynchronously(this, () -> checkUpdate());
-        getServer().getScheduler().runTaskAsynchronously(this, () -> checkVersion());
-
+        if (!getConfig().getString("config-ver").equals(getDescription().getVersion())) {
+            File file = new File(getDataFolder(), "config.yml");
+            file.renameTo(new File(getDataFolder(),"old_c.yml"));
+            YamlConfiguration.loadConfiguration(file);
+            saveDefaultConfig();
+            reloadConfig();
+            getLogger().severe("Your SafeHub config is outdated, your current config has been renamed to old_config.yml");
+        }
+        else {
+            saveDefaultConfig();
+        }
     }
     public void checkUpdate()
     {
@@ -67,13 +77,6 @@ public class main extends JavaPlugin implements Listener {
                 }
             }
             catch (Exception localException) {}
-        }
-    }
-
-    public void checkVersion()
-    {
-        if (!getConfig().getString("config-ver").equals(getDescription().getVersion())) {
-            getLogger().severe("Your SafeHub config version does not match the plugin version. Please update your config (to get the latest config file, visit SafeHub Spigot page).");
         }
     }
 }
