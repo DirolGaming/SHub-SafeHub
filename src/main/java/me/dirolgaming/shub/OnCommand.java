@@ -30,6 +30,7 @@ public class   OnCommand implements CommandExecutor {
                         plugin.getConfig().set("world.Yaw", loc.getYaw());
                         plugin.getConfig().set("world.Pitch", loc.getPitch());
                         plugin.getConfig().set("world.name", world.getName());
+                        plugin.getConfig().set("world.usespawnpointinstead", "false");
                         plugin.saveConfig();
                         plugin.reloadConfig();
                         player.sendMessage(plugin.getConfig().getString("set-hub").replaceAll("&", "§"));
